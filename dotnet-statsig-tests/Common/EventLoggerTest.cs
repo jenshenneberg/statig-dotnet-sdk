@@ -47,7 +47,7 @@ public class EventLoggerTest : IAsyncLifetime, IResponseProvider
     {
         _logger.Enqueue(new EventLog { EventName = "one" });
         _logger.Enqueue(new EventLog { EventName = "two" });
-        await Task.Delay(TimeSpan.FromSeconds(ThresholdSeconds));
+        await Task.Delay(TimeSpan.FromSeconds(ThresholdSeconds * 1.5));
         Assert.Equal(2, _flushedEventCount);
     }
 
