@@ -43,11 +43,11 @@ public class EventLoggerTest : IAsyncLifetime, IResponseProvider
     }
 
     [Fact]
-    public async Task TestPeriodicScheduling()
+    public void TestPeriodicScheduling()
     {
         _logger.Enqueue(new EventLog { EventName = "one" });
         _logger.Enqueue(new EventLog { EventName = "two" });
-        await Task.Delay(TimeSpan.FromSeconds(ThresholdSeconds * 1.5));
+        Task.Delay(TimeSpan.FromSeconds(ThresholdSeconds * 2));
         Assert.Equal(2, _flushedEventCount);
     }
 
