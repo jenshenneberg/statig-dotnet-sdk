@@ -51,14 +51,12 @@ public class EventLoggerTest : IAsyncLifetime, IResponseProvider
         Assert.Equal(2, _flushedEventCount);
     }
 
-
     [Fact]
     public async Task TestShutdownWithInFlightLogs()
     {
         _logger.Enqueue(new EventLog { EventName = "one" });
         _logger.Enqueue(new EventLog { EventName = "two" });
         await _logger.Shutdown();
-
         Assert.Equal(2, _flushedEventCount);
     }
 
